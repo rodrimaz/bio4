@@ -1,0 +1,22 @@
+<!-- carga_datos.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carga de Datos</title>
+</head>
+<body>
+    <h1>Selecciona una opción:</h1>
+    <ul>
+        <li><a href="{% url 'molienda' %}">Acceder a Molienda</a></li>
+        <li><a href="{% url 'licuefac' %}">Acceder a Licuefaccion</a></li>
+        <li><a href="{% url 'ingresar_datos' %}">Acceder a Fermentaciòn</a></li>
+    </ul>
+</body>
+</html>
+{% endblock %}

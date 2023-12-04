@@ -1,0 +1,6 @@
+<!-- formulario_correo.html -->
+<form method="post" action="{% url 'enviar_correo' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar correo</button>
+</form>

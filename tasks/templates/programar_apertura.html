@@ -1,0 +1,43 @@
+<!-- programar_apertura.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programar Apertura</title>
+    <script>
+        // Función para abrir una nueva ventana en un horario específico
+        function programarApertura() {
+            // Define la hora de apertura en formato 24 horas (ejemplo: 14:30)
+            var horaApertura = '14:30';
+
+            // Obtiene la fecha y hora actual
+            var ahora = new Date();
+
+            // Divide la hora de apertura en horas y minutos
+            var [hora, minutos] = horaApertura.split(':');
+
+            // Establece la fecha y hora de apertura
+            var fechaApertura = new Date();
+            fechaApertura.setHours(parseInt(hora, 10), parseInt(minutos, 10), 0, 0);
+
+            // Calcula el tiempo restante hasta la apertura
+            var tiempoRestante = fechaApertura - ahora;
+
+            // Si el tiempo restante es positivo, programa la apertura
+            if (tiempoRestante > 0) {
+                setTimeout(function () {
+                    window.open('https://tu-nueva-ventana.com', '_blank');
+                }, tiempoRestante);
+            }
+        }
+
+        // Llama a la función al cargar la página
+        window.onload = programarApertura;
+    </script>
+</head>
+<body>
+    <h1>Programación de Apertura</h1>
+    <p>Esta página programará la apertura de una nueva ventana en un horario específico.</p>
+</body>
+</html>

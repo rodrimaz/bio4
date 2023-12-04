@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingresar Datos de Licuefacción</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .form-container {
+            float: left;
+            width: 60%;
+            padding: 20px;
+        }
+
+        .table-container {
+            float: right;
+            width: 40%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;  /* Header background color */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;  /* Even row background color */
+        }
+
+        tr.separator-row {
+            height: 10px;
+        }
+
+        tr.highlight-row {
+            background-color: #c6ecc6 !important;  /* Highlighted row background color */
+        }
+
+        .success-message {
+            color: green;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Ingresar Datos de Licuefacción</h2>
+    <div class="container">
+        <div class="form-container">
+            <form method="post" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Guardar</button>
+            </form>
+            {% if success_message %}
+                <p class="success-message">{{ success_message }}</p>
+            {% endif %}
+        </div>
+
+        <div class="table-container">
+            <h1>Last Five Rows</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID Usuario</th>
+                        <th>Usuario</th>
+                        <th>Fecha Creación</th>
+                        <th>Campo 1</th>
+                        <th>Campo 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in last_five_rows %}
+                    <tr {% if row == last_five_rows.0 %}class="highlight-row"{% endif %}>
+                        <td>{{ row.id_usuario }}</td>
+                        <td>{{ row.usuario }}</td>
+                        <td>{{ row.fecha_creacion }}</td>
+                        <td>{{ row.campo1 }}</td>
+                        <td>{{ row.campo2 }}</td>
+                    </tr>
+                    <tr class="separator-row"></tr> {# Add a line between rows #}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
